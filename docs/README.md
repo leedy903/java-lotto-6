@@ -118,9 +118,9 @@
 ```
 
 ## 계획
-### 구현할 기능 목록
+### 요구 사항 목록
 
-#### 1. 기능 요구 사항 구현
+#### 1. 기능 요구 사항
 - [ ] 구입 금액 입력과 구입 금액에 해당하는 로또 발행 구현
 - [ ] 당첨 번호와 보너스 번호 입력 구현
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호 비교하여 당첨 내역 및 수익률 출력 구현
@@ -128,7 +128,7 @@
   - [ ] "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력
   - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
 
-#### 2. 프로그래밍 요구 사항 구현
+#### 2. 프로그래밍 요구 사항
 - [ ] indent depth가 3이 넘지 않도록 구현
 - [ ] 함수의 길이가 15라인을 넘어가지 않도록, 즉 한 가지 일만 잘 하도록 구현
 - [ ] else 사용하지 않고 구현
@@ -142,3 +142,39 @@
   - numbers의 접근 제어자인 private 변경하지 않기
   - Lotto에 필드(인스턴스 변수) 추가하지 않기
   - Lotto 패키지 변경은 가능
+
+### 구현 기능 목록
+
+#### 구입 금액 입력
+- [ ] 로또 구입 금액 입력 받기
+- [ ] 입력이 없는 경우 IllegalArgumentException
+- [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [ ] 1,000원 단위로 나누어 떨어지지 않는 경우 IllegalArgumentException
+- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+
+#### 당첨 번호 입력
+- [ ] 당첨번호 입력 받기, 쉼표(,)를 기준으로 구분
+- [ ] 입력이 없는 경우 IllegalArgumentException
+- [ ] 쉼표로 구분되지 않는 경우 IllegalArgumentException
+- [ ] Parsing 후 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [ ] 6자리 이상 입력 받는 경우 IllegalArgumentException
+- [ ] 중복된 숫자를 입력 받는 경우 IllegalArgumentException
+- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+
+#### 보너스 번호 입력
+- [ ] 보너스 번호 입력 받기
+- [ ] 입력이 없는 경우 IllegalArgumentException
+- [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [ ] 당첨 번호와 중복된 경우 IllegalArgumentException
+- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+
+#### 로또 발행 및 출력
+- [ ] 로또 구입 금액에 맞춰 로또 발행
+- [ ] 로또 번호 오름차순 정렬
+- [ ] 발행 후 로또 수량 및 발행한 로또 번호 출력
+
+#### 당첨 내역
+- [ ] 당첨 내역 출력
+
+#### 수익률 출력
+- [ ] 소수점 둘째 자리에서 반올림하여 수익률 출력
