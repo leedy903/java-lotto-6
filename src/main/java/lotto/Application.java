@@ -15,16 +15,23 @@ public class Application {
 
         int purchaseAmount = 0;
 
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String userInput = Console.readLine().trim();
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String userInput = Console.readLine().trim();
+                try {
+                    purchaseAmount = Integer.parseInt(userInput);
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("[ERROR] purchase amount type isn't Integer");
+                }
+                if (purchaseAmount % lottoPrice != 0) {
+                    throw new IllegalArgumentException("[ERROR] purchase amount isn't multiple of 1,000");
+                }
 
-            purchaseAmount = Integer.parseInt(userInput);
-            if (purchaseAmount % lottoPrice != 0) {
-                throw new IllegalArgumentException("[ERROR] purchase amount isn't multiple of 1,000");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
         }
 
         int lottoAmount = purchaseAmount / lottoPrice;
@@ -48,38 +55,56 @@ public class Application {
             lotto.showNumbers();
         }
 
-
         ArrayList<Integer> winningNumbers = new ArrayList<>();
+        while(true) {
 
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String userInput = Console.readLine().trim();
+                List<String> userInputs = Arrays.stream(userInput.split(",")).toList();
 
-        try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String userInput = Console.readLine().trim();
-            List<String> userInputs = Arrays.stream(userInput.split(",")).toList();
-
-            for (int i = 0; winningNumbers.size() < lottoSize; i++) {
-                int winningNumber = Integer.parseInt(userInputs.get(i));
-                if (winningNumbers.contains(winningNumber)) {
-                    throw new IllegalArgumentException("[ERROR] winning numbers have duplication");
+                if (userInputs.size() != lottoSize) {
+                    throw new IllegalArgumentException("[ERROR] winning numbers size aren't 6");
                 }
-                winningNumbers.add(winningNumber);
+
+                for (int i = 0; winningNumbers.size() < lottoSize; i++) {
+                    int winningNumber = 0;
+                    try {
+                        winningNumber = Integer.parseInt(userInputs.get(i));
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException("[ERROR] winning numbers type aren't Integer");
+                    }
+
+                    if (winningNumbers.contains(winningNumber)) {
+                        throw new IllegalArgumentException("[ERROR] winning numbers have duplication");
+                    }
+                    winningNumbers.add(winningNumber);
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
         }
 
-        try {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String userInput = Console.readLine().trim();
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String userInput = Console.readLine().trim();
+                int bonusNumber = 0;
+                try {
+                    bonusNumber = Integer.parseInt(userInput);
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("[ERROR] bonus number type isn't Integer");
+                }
 
-            int bonusNumber = Integer.parseInt(userInput);
-            if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] winning numbers contain bonus number");
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] winning numbers contain bonus number");
+                }
+                winningNumbers.add(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
             }
-            winningNumbers.add(bonusNumber);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " -- " + e.getStackTrace()[0]);
         }
     }
 }

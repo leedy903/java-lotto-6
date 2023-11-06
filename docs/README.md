@@ -148,25 +148,25 @@
 #### 구입 금액 입력
 - [x] 로또 구입 금액 입력 받기
 - [ ] 입력이 없는 경우 IllegalArgumentException
-- [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
-- [ ] 1,000원 단위로 나누어 떨어지지 않는 경우 IllegalArgumentException
-- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+- [x] 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 1,000원 단위로 나누어 떨어지지 않는 경우 IllegalArgumentException
+- [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 당첨 번호 입력
 - [x] 당첨번호 입력 받기, 쉼표(,)를 기준으로 구분
 - [ ] 입력이 없는 경우 IllegalArgumentException
 - [ ] 쉼표로 구분되지 않는 경우 IllegalArgumentException
-- [ ] Parsing 후 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
-- [ ] 6자리 이상 입력 받는 경우 IllegalArgumentException
+- [x] Parsing 후 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 입력한 번호가 6자리가 아닌 경우 IllegalArgumentException
 - [x] 중복된 숫자를 입력 받는 경우 IllegalArgumentException
-- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+- [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 보너스 번호 입력
 - [x] 보너스 번호 입력 받기
 - [ ] 입력이 없는 경우 IllegalArgumentException
-- [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 타입이 숫자가 아닌 경우 IllegalArgumentException
 - [x] 당첨 번호와 중복된 경우 IllegalArgumentException
-- [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
+- [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 로또 발행 및 출력
 - [x] 로또 구입 금액에 맞춰 로또 발행
