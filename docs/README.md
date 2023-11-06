@@ -146,32 +146,32 @@
 ### 구현 기능 목록
 
 #### 구입 금액 입력
-- [ ] 로또 구입 금액 입력 받기
+- [x] 로또 구입 금액 입력 받기
 - [ ] 입력이 없는 경우 IllegalArgumentException
 - [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
 - [ ] 1,000원 단위로 나누어 떨어지지 않는 경우 IllegalArgumentException
 - [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 당첨 번호 입력
-- [ ] 당첨번호 입력 받기, 쉼표(,)를 기준으로 구분
+- [x] 당첨번호 입력 받기, 쉼표(,)를 기준으로 구분
 - [ ] 입력이 없는 경우 IllegalArgumentException
 - [ ] 쉼표로 구분되지 않는 경우 IllegalArgumentException
 - [ ] Parsing 후 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
 - [ ] 6자리 이상 입력 받는 경우 IllegalArgumentException
-- [ ] 중복된 숫자를 입력 받는 경우 IllegalArgumentException
+- [x] 중복된 숫자를 입력 받는 경우 IllegalArgumentException
 - [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 보너스 번호 입력
-- [ ] 보너스 번호 입력 받기
+- [x] 보너스 번호 입력 받기
 - [ ] 입력이 없는 경우 IllegalArgumentException
 - [ ] 타입이 숫자가 아닌 경우 IllegalArgumentException
-- [ ] 당첨 번호와 중복된 경우 IllegalArgumentException
+- [x] 당첨 번호와 중복된 경우 IllegalArgumentException
 - [ ] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 로또 발행 및 출력
-- [ ] 로또 구입 금액에 맞춰 로또 발행
-- [ ] 로또 번호 오름차순 정렬
-- [ ] 발행 후 로또 수량 및 발행한 로또 번호 출력
+- [x] 로또 구입 금액에 맞춰 로또 발행
+- [x] 로또 번호 오름차순 정렬
+- [x] 발행 후 로또 수량 및 발행한 로또 번호 출력
 
 #### 당첨 내역
 - [ ] 당첨 내역 출력
