@@ -147,25 +147,28 @@
 
 #### 구입 금액 입력
 - [x] 로또 구입 금액 입력 받기
-- [ ] 입력이 없는 경우 IllegalArgumentException
+- [x] 입력이 없는 경우 IllegalArgumentException
 - [x] 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 음수이거나 integer 범위를 넘어서는 경우 IllegalArgumentException
 - [x] 1,000원 단위로 나누어 떨어지지 않는 경우 IllegalArgumentException
 - [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 당첨 번호 입력
 - [x] 당첨번호 입력 받기, 쉼표(,)를 기준으로 구분
-- [ ] 입력이 없는 경우 IllegalArgumentException
-- [ ] 쉼표로 구분되지 않는 경우 IllegalArgumentException
-- [x] Parsing 후 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 입력이 없는 경우 IllegalArgumentException
+- [x] 쉼표로 구분되지 않는 경우 IllegalArgumentException
+- [x] 각 당첨번호 타입이 숫자가 아닌 경우 IllegalArgumentException
+- [x] 각 당첨번호가 1 ~ 45 범위 내에 있지 않는 경우 IllegalArgumentException
 - [x] 입력한 번호가 6자리가 아닌 경우 IllegalArgumentException
 - [x] 중복된 숫자를 입력 받는 경우 IllegalArgumentException
 - [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 보너스 번호 입력
 - [x] 보너스 번호 입력 받기
-- [ ] 입력이 없는 경우 IllegalArgumentException
+- [x] 입력이 없는 경우 IllegalArgumentException
 - [x] 타입이 숫자가 아닌 경우 IllegalArgumentException
 - [x] 당첨 번호와 중복된 경우 IllegalArgumentException
+- [x] 보너스 번호가 1 ~ 45 범위 내에 있지 않는 경우 IllegalArgumentException
 - [x] 잘못된 입력인 경우 에러 메시지 출력 후 다시 입력 받기
 
 #### 로또 발행 및 출력
@@ -174,7 +177,8 @@
 - [x] 발행 후 로또 수량 및 발행한 로또 번호 출력
 
 #### 당첨 내역
-- [ ] 당첨 내역 출력
+- [x] 당첨 내역 출력
+- [x] 당첨 등수 구현에 Enum을 사용
 
 #### 수익률 출력
-- [ ] 소수점 둘째 자리에서 반올림하여 수익률 출력
+- [x] 소수점 둘째 자리에서 반올림하여 수익률 출력
