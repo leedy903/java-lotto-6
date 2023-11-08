@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.utils.Utils;
@@ -36,8 +35,8 @@ public class InputView {
     }
 
     private static void validateUserInputLength(String userInput) {
-        if (userInput == null || userInput.length() == 0) {
-            throw new IllegalArgumentException("[ERROR] There are no user input");
+        if (userInput == null || userInput.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] There are no user input > ");
         }
     }
 }

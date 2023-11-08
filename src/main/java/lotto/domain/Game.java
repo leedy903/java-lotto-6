@@ -19,16 +19,14 @@ public class Game {
     private final int LOTTO_MIN_NUMBER = 1;
     private final int LOTTO_MAX_NUMBER = 45;
     private int purchaseAmount;
-    private List<Integer> winningNumbers = new ArrayList<>();
-    private List<Lotto> issuedLottos = new ArrayList<>();
+    private List<Integer> winningNumbers = new ArrayList<Integer>();
+    private List<Lotto> issuedLottos = new ArrayList<Lotto>();
     private int bonusNumber;
 
     public void run() {
         purchaseLotto();
         issueLotto();
-        printIssuedLotto();
-        setWinningNumbers();
-        setBonusNumber();
+        setWinningNumbersAndBonusNumber();
         printResult();
         Console.close();
     }
@@ -46,13 +44,18 @@ public class Game {
     }
 
     private void issueLotto() {
+        createLotto();
+        printIssuedLotto();
+    }
+
+    private void createLotto() {
         int lottoAmount = purchaseAmount / LOTTO_PRICE;
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
-            List<Integer> issuedNumbers = new ArrayList<>(randomNumbers);
-            Collections.sort(issuedNumbers);
-            Lotto issuedLotto = new Lotto(issuedNumbers);
-            issuedLottos.add(issuedLotto);
+            List<Integer> lottoNumbers = new ArrayList<Integer>(randomNumbers);
+            Collections.sort(lottoNumbers);
+            Lotto lotto = new Lotto(lottoNumbers);
+            issuedLottos.add(lotto);
         }
     }
 
@@ -61,6 +64,11 @@ public class Game {
         for (Lotto lotto: issuedLottos) {
             lotto.printNumbers();
         }
+    }
+
+    private void setWinningNumbersAndBonusNumber() {
+        setWinningNumbers();
+        setBonusNumber();
     }
 
     private void setWinningNumbers() {
@@ -79,6 +87,7 @@ public class Game {
         while (true) {
             try {
                 bonusNumber = InputView.inputBonusNumber();
+                validateBonusNumberRange(bonusNumber);
                 validateWinningNumbersContainsBonusNumber(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
@@ -115,7 +124,7 @@ public class Game {
     }
 
     private Map<Rank, Integer> getRankCounter() {
-        Map<Rank, Integer> rankCounter = new EnumMap<>(Rank.class);
+        Map<Rank, Integer> rankCounter = new EnumMap<Rank, Integer>(Rank.class);
         List<Rank> ranks = Arrays.stream(Rank.values()).toList();
         for(Rank rank : ranks) {
             rankCounter.put(rank, 0);
@@ -129,7 +138,6 @@ public class Game {
         return rankCounter;
     }
 
-
     private void validatePurchaseAmount(int purchaseAmount) {
         validatePurchaseAmountRange(purchaseAmount);
         validatePurchaseAmountMultipleOfThousand(purchaseAmount);
@@ -137,43 +145,60 @@ public class Game {
 
     private void validatePurchaseAmountRange(int purchaseAmount) {
         if (purchaseAmount < 0 || purchaseAmount > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("[ERROR] Out of Integer range");
+            throw new IllegalArgumentException("[ERROR] Out of Integer range > ");
         }
     }
 
     private void validatePurchaseAmountMultipleOfThousand(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] Purchase amount isn't multiple of 1,000");
+            throw new IllegalArgumentException("[ERROR] Purchase amount isn't multiple of 1,000 > ");
         }
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
-        validateWinningNumbersRange(winningNumbers);
+        validateWinningNumbersSize(winningNumbers);
         validateWinningNumbersDuplicate(winningNumbers);
+        validateWinningNumbersRange(winningNumbers);
     }
 
-    private void validateWinningNumbersRange(List<Integer> winningNumbers) {
+    private void validateWinningNumbersSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() > LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] Too many winning numbers, winning numbers must be " + LOTTO_SIZE);
+            throw new IllegalArgumentException("[ERROR] Too many winning numbers, winning numbers must be " + LOTTO_SIZE + " > ");
         }
         if (winningNumbers.size() < LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] Too less winning numbers, winning numbers must be " + LOTTO_SIZE);
+            throw new IllegalArgumentException("[ERROR] Too less winning numbers, winning numbers must be " + LOTTO_SIZE + " > ");
         }
     }
 
     private void validateWinningNumbersDuplicate(List<Integer> winningNumbers) {
-        Set<Integer> duplicateChecker = new HashSet<>();
+        Set<Integer> duplicateChecker = new HashSet<Integer>();
         for (int i = 0; i < winningNumbers.size(); i++) {
             duplicateChecker.add(winningNumbers.get(i));
         }
         if (duplicateChecker.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] Duplicated number in winning numbers");
+            throw new IllegalArgumentException("[ERROR] Duplicated number in winning numbers > ");
         }
+    }
+
+    private void validateWinningNumbersRange(List<Integer> winningNumbers) {
+        for (int winningNumber : winningNumbers) {
+            validateNumberInLottoRange(winningNumber);
+        }
+    }
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        validateNumberInLottoRange(bonusNumber);
     }
 
     private void validateWinningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] Winning numbers contain bonus number");
+            throw new IllegalArgumentException("[ERROR] Winning numbers contain bonus number > ");
+        }
+    }
+
+    private void validateNumberInLottoRange(int number) {
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] Out of valid lotto number > ");
         }
     }
 

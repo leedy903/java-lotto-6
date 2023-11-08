@@ -28,7 +28,7 @@ public enum Rank {
         return Arrays.stream(values())
                 .filter(Rank -> Rank.isMatched.test(matchCount, isBonusMatched))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("[ERROR] Out of winning condition"));
+                .orElseThrow(() -> new IllegalStateException("[ERROR] Out of winning condition > "));
     }
 
     public int getPrize() {

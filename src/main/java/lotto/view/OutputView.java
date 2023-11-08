@@ -13,5 +13,4 @@ public class OutputView {
     public static void printTotalRateOfReturn(double totalRateOfReturn) {
         System.out.println("총 수익률은 " + String.format("%.1f", totalRateOfReturn) + "%입니다.");
     }
-
 }
